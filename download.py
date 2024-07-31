@@ -4,11 +4,14 @@ import csv
 import requests
 import click
 
-@click.command()
+@click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.option('-i', '--input-file', type=click.Path(exists=True), required=True, help='Input CSV file with URLs')
 def download(input_file):
     """
-    Parse a file of URLs and print HTTP status codes and request times.
+    Parse a CSV file of URLs and display HTTP status codes and request times.
+
+    This script reads an input CSV file where each line contains a name and a URL separated by a pipe ('|'). 
+    It then makes HTTP GET requests to each URL and prints the name, HTTP status code, and the time taken for the request.
 
     Args:
         input_file (str): Path to the input CSV file containing names and URLs.
